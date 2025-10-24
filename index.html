@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manya Gureja - Portfolio</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div id="shader-bg"></div>
+
+  <header>
+    <div class="logo">Manya Gureja</div>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="works.html" target="_blank">Works</a>
+      <a href="writing.html" target="_blank">Blog</a>
+      <a href="lab.html" target="_blank">Lab</a>
+    </nav>
+    <div class="time" id="time"></div>
+  </header>
+
+  <div class="sidebar">
+    <div class="sidebar-item" data-window="about">
+      <div class="checkbox checked"></div>
+      <span>About</span>
+    </div>
+    <div class="sidebar-item" data-window="article">
+      <div class="checkbox"></div>
+      <span>Featured Article</span>
+    </div>
+    <div class="sidebar-item" data-window="experiment">
+      <div class="checkbox checked"></div>
+      <span>Featured Project</span>
+    </div>
+    <div class="sidebar-item" data-toggle="gallery">
+      <div class="checkbox checked"></div>
+      <span>Work Gallery</span>
+    </div>
+  </div>
+
+  <div class="window-container" id="desktop"></div>
+
+  <div class="gallery-slider">
+  <div class="gallery-slider">
+    <div class="gallery-title">Work Gallery</div>
+    <div class="gallery-track">
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="assets/video1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="assets/video2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="assets/video3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="assets/video4.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="assets/video5.mp4" type="video/mp4">
+        </video>
+      </div>
+         <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="assets/experiments.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const WINDOWS = {
+      about: {
+        title: 'About',
+        content: `<h3>Manya Gureja</h3>
+        <p>(b. 2004, India) is a design engineer and cross-disciplinary artist primarily interested in the intersection of art and tech to create visual and interactive experiences.</p>
+        <p>She combines creative coding, storytelling, and intuitive design to build not just pretty pixels but emotionally engaging and visually interactive work.</p>`
+      },
+      article: {
+        title: 'Featured Article',
+        content: `<h3>Don't trust the (design) process</h3>
+        <p>There's a strange trend in design lately — we've stopped designing things and started designing the process of designing them. Scroll through LinkedIn or a portfolio, and you'll find diagram after diagram worshipping some linear, sacred framework, all while the actual product gets flatter, safer, and more lifeless.</p>`
+      },
+      experiment: {
+        title: 'Featured Project',
+        content: `<h3>Art in Motion – a personal project</h3>
+        <p>The connection between traditional art and generative art. Tracking hand and crochet movements, dynamic visuals are generated live through mathematical algorithms transforming tactile craft into an interactive and immersive experience.</p>`
+      }
+    };
+
+    class WindowManager {
+      constructor() {
+        this.desktop = document.getElementById('desktop');
+        this.zIndex = 10;
+        this.init();
+      }
+
+      init() {
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+          item.addEventListener('click', () => {
+            if (item.dataset.window) this.toggleWindow(item.dataset.window);
+            else if (item.dataset.toggle === 'gallery') this.toggleGallery(item);
+          });
+        });
+
+        this.updateTime();
+        setInterval(() => this.updateTime(), 1000);
+
+        this.createWindow('about');
+        this.createWindow('experiment');
+      }
+
+      toggleGallery(item) {
+        const gallery = document.querySelector('.gallery-slider');
+        const checkbox = item.querySelector('.checkbox');
+        const isVisible = gallery.style.display !== 'none';
+        gallery.style.display = isVisible ? 'none' : 'block';
+        checkbox.classList.toggle('checked', !isVisible);
+      }
+
+      toggleWindow(type) {
+        const existing = document.querySelector(`[data-type="${type}"]`);
+        existing ? this.closeWindow(existing) : this.createWindow(type);
+      }
+
+      createWindow(type) {
+        const config = WINDOWS[type];
+        const win = document.createElement('div');
+        win.className = 'mac-window active';
+        win.dataset.type = type;
+
+        const savedState = this.getWindowState(type);
+        if (savedState) {
+          Object.assign(win.style, savedState);
+        } else {
+          win.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
+          win.style.top = `${100 + Math.random() * 150}px`;
+          win.style.width = '420px';
+        }
+
+        win.style.zIndex = ++this.zIndex;
+        win.innerHTML = `
+          <div class="resize-handle resize-n"></div>
+          <div class="resize-handle resize-s"></div>
+          <div class="resize-handle resize-e"></div>
+          <div class="resize-handle resize-w"></div>
+          <div class="resize-handle resize-ne"></div>
+          <div class="resize-handle resize-nw"></div>
+          <div class="resize-handle resize-se"></div>
+          <div class="resize-handle resize-sw"></div>
+          <div class="window-header">
+            <div class="window-controls">
+              <div class="control-btn close"></div>
+              <div class="control-btn minimize"></div>
+              <div class="control-btn maximize"></div>
+            </div>
+            <div class="window-title">${config.title}</div>
+          </div>
+          <div class="window-body">${config.content}</div>
+        `;
+
+        this.desktop.appendChild(win);
+        this.bindWindowEvents(win);
+        this.updateCheckbox(type, true);
+      }
+
+      closeWindow(win) {
+        const type = win.dataset.type;
+        win.style.opacity = '0';
+        win.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.saveWindowState(type, {
+            left: win.style.left,
+            top: win.style.top,
+            width: win.style.width,
+            height: win.style.height
+          });
+          win.remove();
+          this.updateCheckbox(type, false);
+        }, 300);
+      }
+
+      bindWindowEvents(win) {
+        const header = win.querySelector('.window-header');
+        const closeBtn = win.querySelector('.close');
+
+        closeBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          this.closeWindow(win);
+        });
+
+        this.makeDraggable(win, header);
+        this.makeResizable(win);
+      }
+
+      makeDraggable(win, handle) {
+        let pos = { x: 0, y: 0 };
+
+        const startDrag = (clientX, clientY) => {
+          win.style.zIndex = ++this.zIndex;
+          pos = { x: clientX - win.offsetLeft, y: clientY - win.offsetTop };
+        };
+
+        const moveDrag = (clientX, clientY) => {
+          win.style.left = `${clientX - pos.x}px`;
+          win.style.top = `${clientY - pos.y}px`;
+        };
+
+        const stopDrag = () => {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+          document.removeEventListener('touchmove', onTouchMove);
+          document.removeEventListener('touchend', onTouchEnd);
+
+          this.saveWindowState(win.dataset.type, {
+            left: win.style.left,
+            top: win.style.top,
+            width: win.style.width,
+            height: win.style.height
+          });
+        };
+
+        const onMouseMove = e => moveDrag(e.clientX, e.clientY);
+        const onMouseUp = stopDrag;
+        const onTouchMove = e => {
+          const t = e.touches[0];
+          moveDrag(t.clientX, t.clientY);
+        };
+        const onTouchEnd = stopDrag;
+
+        const onMouseDown = e => {
+          if (e.target.classList.contains('control-btn')) return;
+          startDrag(e.clientX, e.clientY);
+          document.addEventListener('mousemove', onMouseMove);
+          document.addEventListener('mouseup', onMouseUp);
+        };
+
+        const onTouchStart = e => {
+          if (e.target.classList.contains('control-btn')) return;
+          const t = e.touches[0];
+          startDrag(t.clientX, t.clientY);
+          document.addEventListener('touchmove', onTouchMove);
+          document.addEventListener('touchend', onTouchEnd);
+        };
+
+        handle.addEventListener('mousedown', onMouseDown);
+        handle.addEventListener('touchstart', onTouchStart, { passive: false });
+      }
+
+      makeResizable(win) {
+        win.querySelectorAll('.resize-handle').forEach(handle => {
+          const direction = handle.className.split(' ')[1].replace('resize-', '');
+
+          const startResize = (clientX, clientY) => ({
+            startX: clientX,
+            startY: clientY,
+            startWidth: win.offsetWidth,
+            startHeight: win.offsetHeight,
+            startLeft: win.offsetLeft,
+            startTop: win.offsetTop
+          });
+
+          const resize = (clientX, clientY, s) => {
+            const dx = clientX - s.startX;
+            const dy = clientY - s.startY;
+
+            if (direction.includes('e')) win.style.width = `${Math.max(300, s.startWidth + dx)}px`;
+            if (direction.includes('w')) {
+              const newWidth = Math.max(300, s.startWidth - dx);
+              win.style.width = `${newWidth}px`;
+              win.style.left = `${s.startLeft + (s.startWidth - newWidth)}px`;
+            }
+            if (direction.includes('s')) win.style.height = `${Math.max(200, s.startHeight + dy)}px`;
+            if (direction.includes('n')) {
+              const newHeight = Math.max(200, s.startHeight - dy);
+              win.style.height = `${newHeight}px`;
+              win.style.top = `${s.startTop + (s.startHeight - newHeight)}px`;
+            }
+          };
+
+          const stopResize = () => {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            document.removeEventListener('touchmove', onTouchMove);
+            document.removeEventListener('touchend', onTouchEnd);
+
+            this.saveWindowState(win.dataset.type, {
+              left: win.style.left,
+              top: win.style.top,
+              width: win.style.width,
+              height: win.style.height
+            });
+          };
+
+          const onMouseMove = e => resize(e.clientX, e.clientY, state);
+          const onMouseUp = stopResize;
+          const onTouchMove = e => {
+            const t = e.touches[0];
+            resize(t.clientX, t.clientY, state);
+          };
+          const onTouchEnd = stopResize;
+
+          let state;
+
+          const onMouseDown = e => {
+            e.stopPropagation();
+            state = startResize(e.clientX, e.clientY);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+          };
+
+          const onTouchStart = e => {
+            e.stopPropagation();
+            const t = e.touches[0];
+            state = startResize(t.clientX, t.clientY);
+            document.addEventListener('touchmove', onTouchMove);
+            document.addEventListener('touchend', onTouchEnd);
+          };
+
+          handle.addEventListener('mousedown', onMouseDown);
+          handle.addEventListener('touchstart', onTouchStart, { passive: false });
+        });
+      }
+
+      updateCheckbox(type, checked) {
+        const item = document.querySelector(`[data-window="${type}"]`);
+        const checkbox = item.querySelector('.checkbox');
+        checkbox.classList.toggle('checked', checked);
+      }
+
+      updateTime() {
+        const now = new Date();
+        const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+          .map(n => String(n).padStart(2, '0'))
+          .join(':');
+        document.getElementById('time').textContent = `${time} [VIE]`;
+      }
+
+      saveWindowState(type, state) {
+        const saved = JSON.parse(localStorage.getItem('windowStates') || '{}');
+        saved[type] = state;
+        localStorage.setItem('windowStates', JSON.stringify(saved));
+      }
+
+      getWindowState(type) {
+        const saved = JSON.parse(localStorage.getItem('windowStates') || '{}');
+        return saved[type];
+      }
+    }
+
+    new WindowManager();
+  </script>
+
+  <!-- ✅ Use older Three.js temporarily or switch to module imports --><script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
+  <script src="shader.js"></script>
+</body>
+</html>

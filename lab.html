@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab - Manya Gureja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+       font-family: 'Courier New', monospace;
+            background: #000;
+            color: #fff;
+  
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '●';
+            color: #00ff00;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #00ff00;
+        }
+
+        .time {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .lab-container {
+            padding: 100px 40px 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Masonry Grid */
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 16px;
+            grid-auto-flow: dense;
+        }
+
+        /* Card Styles */
+        .experiment-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .experiment-card.large {
+            grid-row: span 2;
+        }
+
+        .experiment-card.wide {
+            grid-column: span 2;
+        }
+
+        /* Card Content */
+        .card-media {
+            width: 100%;
+            height: 300px;
+            background: #2a2a2a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experiment-card.large .card-media {
+            height: 456px;
+        }
+
+        .media-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .card-info {
+            padding: 18px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .card-date {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Badge */
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #ff4444;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .experiments-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .experiments-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .experiment-card.wide {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lab-container {
+                padding: 80px 20px 20px;
+            }
+
+            .experiments-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .experiment-card.large {
+                grid-row: span 2;
+            }
+
+            .experiment-card.large .card-media {
+                height: 220px;
+            }
+            /* 🔹 Width (columns) control */
+.experiment-card.wide {
+  grid-column: span 2;
+}
+
+.experiment-card.extra-wide {
+  grid-column: span 3;
+}
+
+/* 🔹 Height (rows) control */
+.experiment-card.tall {
+  grid-row: span 2;
+}
+
+.experiment-card.extra-tall {
+  grid-row: span 3;
+}
+
+/* (optional) for more flexibility if you mix them */
+.experiment-card.big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+            /* Custom layout proportions */
+.experiment-card.wheel {
+  grid-column: span 3;  /* makes it wider across two columns */
+  grid-row: span 1.5;   /* slightly taller than normal cards */
+}
+.experiment-card.exp {
+  grid-column: span 2;  /* makes it wider across two columns */
+  grid-row: span 1;   /* slightly taller than normal cards */
+}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Manya Gureja</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="works.html">Works</a>
+            <a href="writing.html">Blog</a>
+            <a href="lab.html" class="active">Lab</a>
+        </nav>
+        <div class="time" id="time"></div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="lab-container">
+        <div class="experiments-grid">
+            <!-- Experiment 1 - Large -->
+            <div class="experiment-card ">
+                <div class="card-media">
+                    <div class="media-placeholder"> <video autoplay muted loop playsinline>
+    <source src="assets/video1.mp4" type="video/mp4">
+  </video></div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Motion Design</div>
+                    <div class="card-date">July 2025</div>
+                </div>
+            </div>
+
+            <!-- Experiment 2 - Wide with Badge -->
+            <div class="experiment-card wide">
+                
+                <div class="card-media">
+                    <div class="media-placeholder"> <video autoplay muted loop playsinline>
+    <source src="assets/video2.mp4" type="video/mp4">
+  </video></div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Generative Art</div>
+                    <div class="card-date">February 2025</div>
+                </div>
+            </div>
+
+            <!-- Experiment 3 -->
+            <div class="experiment-card">
+                <div class="card-media">
+                    <div class="media-placeholder"> <video autoplay muted loop playsinline>
+    <source src="assets/video3.mp4" type="video/mp4">
+  </video></div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Moving Poster</div>
+                    <div class="card-date">August 2025</div>
+                </div>
+            </div>
+
+            <!-- Experiment 4 -->
+            <div class="experiment-card">
+                <div class="card-media">
+                    <div class="media-placeholder"> <video autoplay muted loop playsinline>
+    <source src="assets/video4.mp4" type="video/mp4">
+  </video></div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Motion Design</div>
+                    <div class="card-date">January 2025</div>
+                </div>
+            </div>
+                 <!-- Experiment 5 -->
+            <div class="experiment-card wheel">
+                <div class="card-media">
+                    <div class="media-placeholder"> <video autoplay muted loop playsinline>
+    <source src="assets/wheel.mp4" type="video/mp4">
+  </video></div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Generative Art- experiements</div>
+                    <div class="card-date">September 2025</div>
+                </div>
+            </div>
+
+              <div class="experiment-card wide" style= "grid-column: span 3; grid-row: span 3;">
+                <div class="card-media">
+                    <div class="media-placeholder"> <video autoplay muted loop playsinline>
+    <source src="assets/experiments.mp4" type="video/mp4">
+  </video></div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Generative Art- experiements</div>
+                    <div class="card-date">September 2025</div>
+                </div>
+            </div>
+
+           
+    <script>
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+                .map(n => String(n).padStart(2, '0'))
+                .join(':');
+            document.getElementById('time').textContent = `${time} [VIE]`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

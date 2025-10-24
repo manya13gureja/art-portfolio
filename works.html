@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - Manya Gureja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       #shader-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2; /* ensures it's behind everything */
+  overflow: hidden;
+}
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Video Background */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '●';
+            color: #00ff00;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #00ff00;
+        }
+
+        .time {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        .works-layout {
+            position: relative;
+            display: flex;
+            height: 100vh;
+            padding-top: 60px;
+            z-index: 1;
+        }
+
+        /* Sidebar */
+        .works-sidebar {
+            width: 480px;
+            background: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(60, 60, 60, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .works-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-count {
+            padding: 15px 25px;
+            font-size: 13px;
+            color: #999;
+            border-bottom: 1px solid rgba(60, 60, 60, 0.8);
+        }
+
+        .projects-list {
+            flex: 1;
+        }
+
+        .project-item {
+            padding: 16px 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px solid rgba(60, 60, 60, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .project-item::before {
+            content: '▶';
+            font-size: 8px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            position: absolute;
+            left: 10px;
+        }
+
+        .project-item:hover {
+            background: rgba(60, 60, 60, 0.3);
+        }
+
+        .project-item:hover::before {
+            opacity: 1;
+        }
+
+        .sidebar-footer {
+            padding: 25px;
+            border-top: 1px solid rgba(60, 60, 60, 0.8);
+        }
+
+        .footer-text {
+            font-size: 11px;
+            line-height: 1.7;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .footer-copyright {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Preview Area */
+        .preview-area {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-card {
+            position: absolute;
+            width: 500px;
+            height: 350px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .preview-card.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .works-sidebar {
+                width: 350px;
+            }
+
+            .preview-card {
+                width: 400px;
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .works-layout {
+                flex-direction: column;
+            }
+
+            .works-sidebar {
+                width: 100%;
+                height: 50vh;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .preview-area {
+                height: 50vh;
+            }
+
+            .preview-card {
+                width: 90%;
+                max-width: 350px;
+                height: 250px;
+            }
+
+            .project-item {
+                font-size: 14px;
+                padding: 15px 20px;
+            }
+
+            .sidebar-footer {
+                padding: 20px;
+            }
+        }
+
+        /* Scrollbar */
+        .works-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .works-sidebar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .works-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .works-sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+   <div id="shader-bg"></div>
+    <!-- Header -->
+    <header>
+        <div class="logo">Manya Gureja</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="works.html" class="active">Works</a>
+            <a href="writing.html">Blog</a>
+            <a href="lab.html">Lab</a>
+        </nav>
+        <div class="time" id="time"></div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="works-layout">
+        <!-- Sidebar -->
+        <aside class="works-sidebar">
+            <div class="project-count">[4]</div>
+            
+            <div class="projects-list" id="projectsList">
+                <div class="project-item" data-project="UI">Eunoia UI</div>
+                <div class="project-item" data-project="creative">Breathe with Us</div>
+                <div class="project-item" data-project="personal">Art in Motion</div>
+                <div class="project-item" data-project="404">The Lost Internet</div>
+
+            </div>
+
+            <div class="sidebar-footer">
+                <p class="footer-text">
+                    Over the past several years, m has worked across a diverse range of projects spanning different industries, formats, and scopes. This collection highlights a selection of those works, chosen not only for their individual significance but also for the way they reflect the evolution of her approach, thinking, and technical practice over time.
+                </p>
+                <p class="footer-copyright">© 2025 Manya Gureja.</p>
+            </div>
+        </aside>
+        <div class="preview-area" id="previewArea">
+        </div>
+    </div>
+<script>
+    const PROJECTS = {
+        UI: { name: 'Eunoia UI', image: 'assets/eunoiaui.webp', link: 'https://eunoiaui.vercel.app' },
+        creative : { name: 'Breathe with Us', image: 'assets/breathewus.webp', link: '' },
+        personal: { name: 'Art in Motion', image: 'assets/crochet.webp' , link:'https://fortunate-politician-605.notion.site/Art-in-Motion-Real-Time-crochet-pattern-visualisation-189ff90b3b6b8090a8d1f840b23fcadb' },
+        404: { name: 'The Lost Internet', image: 'assets/404.webp', link:'https://404-pages.framer.website' },
+    };
+
+    class WorksPage {
+        constructor() {
+            this.previewArea = document.getElementById('previewArea');
+            this.currentPreview = null;
+            this.init();
+        }
+
+        init() {
+            this.createPreviewCards();
+            this.bindEvents();
+            this.updateTime();
+            setInterval(() => this.updateTime(), 1000);
+        }
+
+        createPreviewCards() {
+            Object.entries(PROJECTS).forEach(([key, project]) => {
+                const card = document.createElement('div');
+                card.className = 'preview-card';
+                card.dataset.project = key;
+
+                if (project.image) {
+                    card.innerHTML = `<img src="${project.image}" alt="${project.name}" class="preview-image">`;
+                } else {
+                    card.innerHTML = `<div class="preview-placeholder">${project.name}</div>`;
+                }
+
+                this.previewArea.appendChild(card);
+            });
+        }
+
+        bindEvents() {
+            const projectItems = document.querySelectorAll('.project-item');
+
+            projectItems.forEach(item => {
+                const projectKey = item.dataset.project;
+                const project = PROJECTS[projectKey];
+
+                // Hover for preview
+                item.addEventListener('mouseenter', () => this.showPreview(projectKey));
+                item.addEventListener('mouseleave', () => this.hidePreview());
+
+                // Click to open external link if it exists
+                if (project.link) {
+                    item.style.cursor = 'pointer';
+                    item.addEventListener('click', () => {
+                        window.open(project.link, '_blank', 'noopener,noreferrer');
+                    });
+                }
+            });
+        }
+
+        showPreview(projectKey) {
+            if (this.currentPreview) {
+                this.currentPreview.classList.remove('active');
+            }
+
+            const preview = this.previewArea.querySelector(`[data-project="${projectKey}"]`);
+            if (preview) {
+                preview.classList.add('active');
+                this.currentPreview = preview;
+            }
+        }
+
+        hidePreview() {
+            if (this.currentPreview) {
+                this.currentPreview.classList.remove('active');
+                this.currentPreview = null;
+            }
+        }
+
+        updateTime() {
+            const now = new Date();
+            const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+                .map(n => String(n).padStart(2, '0'))
+                .join(':');
+            document.getElementById('time').textContent = `${time} [VIE]`;
+        }
+    }
+
+    new WorksPage();
+</script>
+     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="shader.js"></script>
+</body>
+</html>
