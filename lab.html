@@ -131,7 +131,6 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Dialog Styles */
         .dialog-overlay {
             position: fixed;
             top: 0;
@@ -305,7 +304,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="logo">Manya Gureja</div>
         <nav>
@@ -317,17 +315,14 @@
         <div class="time" id="time"></div>
     </header>
 
-    <!-- Main Content -->
     <div class="lab-container">
         <div class="experiments-grid">
-            <!-- Experiment Cards -->
-              <div class="experiment-card" onclick="openDialog('experiment8')">
+            <div class="experiment-card" onclick="openDialog('experiment8')">
                 <div class="card-media">
                     <div class="media-placeholder">
-                        <video muted loop playsinline>
-                            <source src="assets/aurovideo.mp4" type="video/mp4">
+                        <video muted loop playsinline preload="metadata">
+                            <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764969101/aurovideo_fxnrov.mp4" type="video/mp4">
                         </video>
-                       
                     </div>
                 </div>
                 <div class="card-info">
@@ -335,13 +330,13 @@
                     <div class="card-date">September 2025</div>
                 </div>
             </div>
-              <div class="experiment-card" onclick="openDialog('experiment7')">
+
+            <div class="experiment-card" onclick="openDialog('experiment7')">
                 <div class="card-media">
                     <div class="media-placeholder">
-                        <video muted loop playsinline>
-                            <source src="assets/danspunk.mp4" type="video/mp4">
+                        <video muted loop playsinline preload="metadata">
+                            <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.mp4" type="video/mp4">
                         </video>
-                   
                     </div>
                 </div>
                 <div class="card-info">
@@ -353,7 +348,7 @@
             <div class="experiment-card" onclick="openDialog('experiment1')">
                 <div class="card-media">
                     <div class="media-placeholder">
-                        <video muted loop playsinline>
+                        <video muted loop playsinline preload="metadata">
                             <source src="assets/video1.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -367,7 +362,7 @@
             <div class="experiment-card" onclick="openDialog('experiment2')">
                 <div class="card-media">
                     <div class="media-placeholder">
-                        <video autoplay muted loop playsinline>
+                        <video muted loop playsinline preload="metadata">
                             <source src="assets/video2.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -381,7 +376,7 @@
             <div class="experiment-card" onclick="openDialog('experiment3')">
                 <div class="card-media">
                     <div class="media-placeholder">
-                        <video autoplay muted loop playsinline>
+                        <video muted loop playsinline preload="metadata">
                             <source src="assets/video3.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -395,13 +390,13 @@
             <div class="experiment-card" onclick="openDialog('experiment4')">
                 <div class="card-media">
                     <div class="media-placeholder">
-                        <video autoplay muted loop playsinline>
+                        <video muted loop playsinline preload="metadata">
                             <source src="assets/video4.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
                 <div class="card-info">
-                    <div class="card-title"> UFQFT Exploration</div>
+                    <div class="card-title">UFQFT Exploration</div>
                     <div class="card-date">January 2025</div>
                 </div>
             </div>
@@ -409,7 +404,7 @@
             <div class="experiment-card" onclick="openDialog('experiment6')">
                 <div class="card-media">
                     <div class="media-placeholder">
-                        <video autoplay muted loop playsinline>
+                        <video muted loop playsinline preload="metadata">
                             <source src="assets/experiments.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -422,7 +417,6 @@
         </div>
     </div>
 
-    <!-- Dialog Overlay -->
     <div class="dialog-overlay" id="dialogOverlay">
         <div class="dialog-content">
             <div class="dialog-header">
@@ -454,6 +448,7 @@
                         <div class="meta-item">
                             <div class="meta-label">Link</div>
                             <div class="meta-value" id="dialogLink"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -461,7 +456,6 @@
     </div>
 
     <script>
-        // Update time
         function updateTime() {
             const now = new Date();
             const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
@@ -472,9 +466,8 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        // Experiment data
         const experiments = {
-              experiment8: {
+            experiment8: {
                 title: 'Visual for LokomotionXMixedfeelings at Auro',
                 date: 'September 2025',
                 category: 'Creative Coding',
@@ -499,7 +492,7 @@
                 tools: 'Touchdesigner,p5.js',
                 video: 'assets/video1.mp4',
                 description: `You must've heard of the Unified Fractal Quantum Field Theory, if you haven't(what are you doing at my site) you'll learn it over here through the visuals I made demonstrating the structural unity between natural growth patterns and computational generative systems.
-                To show that the universe is structured by simple repeating rules, and that these rules can be visually reconstructed using computational design. It’s a mix of: 
+                To show that the universe is structured by simple repeating rules, and that these rules can be visually reconstructed using computational design. It's a mix of: 
 	            •	physics curiosity
 	•	design craft
 	•	geometry exploration
@@ -521,7 +514,7 @@
                 category: 'Typography',
                 tools: 'PS',
                 video: 'assets/video3.mp4',
-                description: 'A cover I made for my favourite book, meeting the universe halfway. The book argues that the universe isn’t something we observe from a distance, we participate in its unfolding, that idea became the core of the visual direction. '
+                description: 'A cover I made for my favourite book, meeting the universe halfway. The book argues that the universe isnt something we observe from a distance, we participate in its unfolding, that idea became the core of the visual direction. '
             },
             experiment4: {
                 title: 'Motion Design',
@@ -531,38 +524,34 @@
                 video: 'assets/video4.mp4',
                 description: 'Just exploration of a new tool'
             },
-          
             experiment6: {
                 title: 'Generative Art - Experiments',
                 date: 'September 2025',
                 category: 'Creative Coding',
                 tools: 'p5.js, GLSL',
                 video: 'assets/experiments.mp4',
-                description: 'This project is a running archive of my generative art experiments built across TouchDesigner and p5.js. It’s not a single output, it’s a continuous investigation into how code, motion, and interaction can shape visual systems in real time. I explored everything from hand-tracking and motion-tracking to physics-driven patterns and responsive geometries. Each experiment tests a different idea: how visuals behave when pushed by data, how movement can sculpt form, how algorithms can mimic natural systems, or how interaction can turn a passive screen into a living environment.',
+                description: 'This project is a running archive of my generative art experiments built across TouchDesigner and p5.js. Its not a single output, its a continuous investigation into how code, motion, and interaction can shape visual systems in real time. I explored everything from hand-tracking and motion-tracking to physics-driven patterns and responsive geometries. Each experiment tests a different idea: how visuals behave when pushed by data, how movement can sculpt form, how algorithms can mimic natural systems, or how interaction can turn a passive screen into a living environment.',
             }
         };
 
-        // Dialog functions
         function openDialog(experimentId) {
             const experiment = experiments[experimentId];
             if (!experiment) return;
 
-            // Update dialog content
             document.getElementById('dialogTitle').textContent = experiment.title;
             document.getElementById('dialogDate').textContent = experiment.date;
             document.getElementById('dialogCategory').textContent = experiment.category;
             document.getElementById('dialogTools').textContent = experiment.tools;
             document.getElementById('dialogDescription').textContent = experiment.description;
             const dialogLink = document.getElementById('dialogLink');
-dialogLink.innerHTML = experiment.link
-    ? `<a href="${experiment.link}" target="_blank" style="color:#00ff00; text-decoration:underline;">See on Instagram</a>`
-    : '—';
+            dialogLink.innerHTML = experiment.link
+                ? `<a href="${experiment.link}" target="_blank" style="color:#00ff00; text-decoration:underline;">See on Instagram</a>`
+                : '—';
 
             const videoElement = document.getElementById('dialogVideo');
             videoElement.src = experiment.video;
             videoElement.load();
 
-            // Show dialog
             const overlay = document.getElementById('dialogOverlay');
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -573,26 +562,22 @@ dialogLink.innerHTML = experiment.link
             overlay.classList.remove('active');
             document.body.style.overflow = '';
             
-            // Pause video
             const videoElement = document.getElementById('dialogVideo');
             videoElement.pause();
         }
 
-        // Close dialog on overlay click
         document.getElementById('dialogOverlay').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeDialog();
             }
         });
 
-        // Close dialog on ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeDialog();
             }
         });
 
-        // Hover effect for card videos
         document.querySelectorAll('.experiment-card').forEach(card => {
             const video = card.querySelector('video');
             if (video) {
