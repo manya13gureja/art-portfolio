@@ -1,155 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manya Gureja - Portfolio</title>
-  <link rel="stylesheet" href="index.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manya Gureja - Portfolio</title>
+<link rel="stylesheet" href="index.css" />
 </head>
 <body>
-  <div id="shader-bg"></div>
-
-  <header>
-    <div class="logo">Manya Gureja</div>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="works.html" target="_blank">Works</a>
-      <a href="writing.html" target="_blank">Blog</a>
-      <a href="lab.html" target="_blank">Lab</a>
-    </nav>
-    <div class="time" id="time"></div>
-  </header>
-
-  <div class="sidebar">
-    <div class="sidebar-item" data-window="about">
-      <div class="checkbox checked"></div>
-      <span>About</span>
-    </div>
-    <div class="sidebar-item" data-window="article">
-      <div class="checkbox"></div>
-      <span>Featured Article</span>
-    </div>
-    <div class="sidebar-item" data-window="experiment">
-      <div class="checkbox checked"></div>
-      <span>Featured Project</span>
-    </div>
-    <div class="sidebar-item" data-toggle="gallery">
-      <div class="checkbox checked"></div>
-      <span>Work Gallery</span>
-    </div>
-  </div>
-
-  <div class="window-container" id="desktop"></div>
-
-  <div class="gallery-slider">
-  <div class="gallery-slider">
-    <div class="gallery-title">Work Gallery</div>
-    <div class="gallery-track">
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970193/video1_wfpl1b.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970222/video2_u8lquv.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970262/video3_nzb3xp.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970326/experiments_uzc2hf.mov4" type="video/mp4">
-        </video>
-      </div>
-      <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764969101/aurovideo_fxnrov.mp4" type="video/mp4">
-        </video>
-      </div>
-         <div class="gallery-item">
-        <video autoplay muted loop playsinline>
-          <source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const WINDOWS = {
-      about: {
-        title: 'About',
-        content: `<h3>Manya Gureja</h3>
+<div id="shader-bg"></div>
+<header>
+<div class="logo">Manya Gureja</div>
+<nav>
+<a href="index.html" class="active">Home</a>
+<a href="works.html" target="_blank">Works</a>
+<a href="writing.html" target="_blank">Blog</a>
+<a href="lab.html" target="_blank">Lab</a>
+</nav>
+<div class="time" id="time"></div>
+</header>
+<div class="sidebar">
+<div class="sidebar-item" data-window="about">
+<div class="checkbox checked"></div>
+<span>About</span>
+</div>
+<div class="sidebar-item" data-window="article">
+<div class="checkbox"></div>
+<span>Featured Article</span>
+</div>
+<div class="sidebar-item" data-window="experiment">
+<div class="checkbox checked"></div>
+<span>Featured Project</span>
+</div>
+<div class="sidebar-item" data-toggle="gallery">
+<div class="checkbox checked"></div>
+<span>Work Gallery</span>
+</div>
+</div>
+<div class="window-container" id="desktop"></div>
+<div class="gallery-slider">
+<div class="gallery-title">Work Gallery</div>
+<div class="gallery-track">
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970193/video1_wfpl1b.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970193/video1_wfpl1b.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970222/video2_u8lquv.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970222/video2_u8lquv.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970262/video3_nzb3xp.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970262/video3_nzb3xp.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970326/experiments_uzc2hf.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970326/experiments_uzc2hf.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764969101/aurovideo_fxnrov.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764969101/aurovideo_fxnrov.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.mp4" type="video/mp4">
+</video>
+</div>
+<!-- Duplicate items for seamless loop -->
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970193/video1_wfpl1b.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970193/video1_wfpl1b.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970222/video2_u8lquv.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970222/video2_u8lquv.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970262/video3_nzb3xp.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970262/video3_nzb3xp.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970326/experiments_uzc2hf.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970326/experiments_uzc2hf.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764969101/aurovideo_fxnrov.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764969101/aurovideo_fxnrov.mp4" type="video/mp4">
+</video>
+</div>
+<div class="gallery-item">
+<video muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.jpg">
+<source src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</div>
+<script>
+const WINDOWS = {
+about: {
+title: 'About',
+content: `<h3>Manya Gureja</h3>
         <p>(b. 2004, India) is a design engineer and cross-disciplinary artist primarily interested in the intersection of art and tech to create visual and interactive experiences.</p>
         <p>She combines creative coding, storytelling, and intuitive design to build not just pretty pixels but emotionally engaging and visually interactive work.</p>`
       },
-      article: {
-        title: 'Featured Article',
-        content: `<h3>Don't trust the (design) process</h3>
+article: {
+title: 'Featured Article',
+content: `<h3>Don't trust the (design) process</h3>
         <p>There's a strange trend in design lately — we've stopped designing things and started designing the process of designing them. Scroll through LinkedIn or a portfolio, and you'll find diagram after diagram worshipping some linear, sacred framework, all while the actual product gets flatter, safer, and more lifeless.</p>`
       },
-      experiment: {
-        title: 'Featured Project',
-        content: `<h3>Art in Motion – a personal project</h3>
+experiment: {
+title: 'Featured Project',
+content: `<h3>Art in Motion – a personal project</h3>
         <p>The connection between traditional art and generative art. Tracking hand and crochet movements, dynamic visuals are generated live through mathematical algorithms transforming tactile craft into an interactive and immersive experience.</p>`
       }
     };
 
-    class WindowManager {
-      constructor() {
-        this.desktop = document.getElementById('desktop');
-        this.zIndex = 10;
-        this.init();
+class GalleryManager {
+  constructor() {
+    this.track = document.querySelector('.gallery-track');
+    this.videos = this.track.querySelectorAll('video');
+    this.isScrolling = false;
+    this.scrollSpeed = 0.5; // pixels per frame
+    this.init();
+  }
+
+  init() {
+    // Load and play all videos
+    this.videos.forEach((video, index) => {
+      video.load();
+      
+      // Stagger the play start slightly to avoid all loading at once
+      setTimeout(() => {
+        video.play().catch(e => {
+          console.log(`Video ${index} autoplay prevented, will retry on user interaction`);
+          // Retry on first user interaction
+          document.addEventListener('click', () => {
+            video.play().catch(() => {});
+          }, { once: true });
+        });
+      }, index * 100);
+    });
+
+    // Start infinite scroll
+    this.startInfiniteScroll();
+    
+    // Pause on hover
+    this.track.addEventListener('mouseenter', () => {
+      this.isScrolling = false;
+      this.videos.forEach(v => v.pause());
+    });
+    
+    this.track.addEventListener('mouseleave', () => {
+      this.isScrolling = true;
+      this.videos.forEach(v => v.play().catch(() => {}));
+    });
+  }
+
+  startInfiniteScroll() {
+    this.isScrolling = true;
+    let scrollPosition = 0;
+
+    const scroll = () => {
+      if (!this.isScrolling) {
+        requestAnimationFrame(scroll);
+        return;
       }
 
-      init() {
-        document.querySelectorAll('.sidebar-item').forEach(item => {
-          item.addEventListener('click', () => {
-            if (item.dataset.window) this.toggleWindow(item.dataset.window);
-            else if (item.dataset.toggle === 'gallery') this.toggleGallery(item);
+      scrollPosition += this.scrollSpeed;
+      
+      // Get the width of one set of items (half the track since we duplicated)
+      const itemWidth = this.track.querySelector('.gallery-item').offsetWidth + 20; // 20px gap
+      const resetPoint = itemWidth * (this.videos.length / 2);
+      
+      if (scrollPosition >= resetPoint) {
+        scrollPosition = 0;
+      }
+      
+      this.track.style.transform = `translateX(-${scrollPosition}px)`;
+      
+      requestAnimationFrame(scroll);
+    };
+
+    scroll();
+  }
+}
+
+class WindowManager {
+constructor() {
+this.desktop = document.getElementById('desktop');
+this.zIndex = 10;
+this.galleryManager = null;
+this.init();
+      }
+init() {
+document.querySelectorAll('.sidebar-item').forEach(item => {
+item.addEventListener('click', () => {
+if (item.dataset.window) this.toggleWindow(item.dataset.window);
+else if (item.dataset.toggle === 'gallery') this.toggleGallery(item);
           });
         });
-
-        this.updateTime();
-        setInterval(() => this.updateTime(), 1000);
-
-        this.createWindow('about');
-        this.createWindow('experiment');
+this.updateTime();
+setInterval(() => this.updateTime(), 1000);
+this.createWindow('about');
+this.createWindow('experiment');
+        
+// Initialize gallery
+this.galleryManager = new GalleryManager();
       }
-
-      toggleGallery(item) {
-        const gallery = document.querySelector('.gallery-slider');
-        const checkbox = item.querySelector('.checkbox');
-        const isVisible = gallery.style.display !== 'none';
-        gallery.style.display = isVisible ? 'none' : 'block';
-        checkbox.classList.toggle('checked', !isVisible);
+toggleGallery(item) {
+const gallery = document.querySelector('.gallery-slider');
+const checkbox = item.querySelector('.checkbox');
+const isVisible = gallery.style.display !== 'none';
+gallery.style.display = isVisible ? 'none' : 'block';
+checkbox.classList.toggle('checked', !isVisible);
+        
+// Resume scrolling and videos when gallery is shown
+if (!isVisible && this.galleryManager) {
+  this.galleryManager.isScrolling = true;
+  this.galleryManager.videos.forEach(v => v.play().catch(() => {}));
+}
       }
-
-      toggleWindow(type) {
-        const existing = document.querySelector(`[data-type="${type}"]`);
-        existing ? this.closeWindow(existing) : this.createWindow(type);
+toggleWindow(type) {
+const existing = document.querySelector(`[data-type="${type}"]`);
+existing ? this.closeWindow(existing) : this.createWindow(type);
       }
-
-      createWindow(type) {
-        const config = WINDOWS[type];
-        const win = document.createElement('div');
-        win.className = 'mac-window active';
-        win.dataset.type = type;
-
-        const savedState = this.getWindowState(type);
-        if (savedState) {
-          Object.assign(win.style, savedState);
+createWindow(type) {
+const config = WINDOWS[type];
+const win = document.createElement('div');
+win.className = 'mac-window active';
+win.dataset.type = type;
+const savedState = this.getWindowState(type);
+if (savedState) {
+Object.assign(win.style, savedState);
         } else {
-          win.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
-          win.style.top = `${100 + Math.random() * 150}px`;
-          win.style.width = '420px';
+win.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
+win.style.top = `${100 + Math.random() * 150}px`;
+win.style.width = '420px';
         }
-
-        win.style.zIndex = ++this.zIndex;
-        win.innerHTML = `
+win.style.zIndex = ++this.zIndex;
+win.innerHTML = `
           <div class="resize-handle resize-n"></div>
           <div class="resize-handle resize-s"></div>
           <div class="resize-handle resize-e"></div>
@@ -168,200 +265,177 @@
           </div>
           <div class="window-body">${config.content}</div>
         `;
-
-        this.desktop.appendChild(win);
-        this.bindWindowEvents(win);
-        this.updateCheckbox(type, true);
+this.desktop.appendChild(win);
+this.bindWindowEvents(win);
+this.updateCheckbox(type, true);
       }
-
-      closeWindow(win) {
-        const type = win.dataset.type;
-        win.style.opacity = '0';
-        win.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-          this.saveWindowState(type, {
-            left: win.style.left,
-            top: win.style.top,
-            width: win.style.width,
-            height: win.style.height
+closeWindow(win) {
+const type = win.dataset.type;
+win.style.opacity = '0';
+win.style.transform = 'scale(0.9)';
+setTimeout(() => {
+this.saveWindowState(type, {
+left: win.style.left,
+top: win.style.top,
+width: win.style.width,
+height: win.style.height
           });
-          win.remove();
-          this.updateCheckbox(type, false);
+win.remove();
+this.updateCheckbox(type, false);
         }, 300);
       }
-
-      bindWindowEvents(win) {
-        const header = win.querySelector('.window-header');
-        const closeBtn = win.querySelector('.close');
-
-        closeBtn.addEventListener('click', e => {
-          e.stopPropagation();
-          this.closeWindow(win);
+bindWindowEvents(win) {
+const header = win.querySelector('.window-header');
+const closeBtn = win.querySelector('.close');
+closeBtn.addEventListener('click', e => {
+e.stopPropagation();
+this.closeWindow(win);
         });
-
-        this.makeDraggable(win, header);
-        this.makeResizable(win);
+this.makeDraggable(win, header);
+this.makeResizable(win);
       }
-
-      makeDraggable(win, handle) {
-        let pos = { x: 0, y: 0 };
-
-        const startDrag = (clientX, clientY) => {
-          win.style.zIndex = ++this.zIndex;
-          pos = { x: clientX - win.offsetLeft, y: clientY - win.offsetTop };
+makeDraggable(win, handle) {
+let pos = { x: 0, y: 0 };
+const startDrag = (clientX, clientY) => {
+win.style.zIndex = ++this.zIndex;
+pos = { x: clientX - win.offsetLeft, y: clientY - win.offsetTop };
         };
-
-        const moveDrag = (clientX, clientY) => {
-          win.style.left = `${clientX - pos.x}px`;
-          win.style.top = `${clientY - pos.y}px`;
+const moveDrag = (clientX, clientY) => {
+win.style.left = `${clientX - pos.x}px`;
+win.style.top = `${clientY - pos.y}px`;
         };
-
-        const stopDrag = () => {
-          document.removeEventListener('mousemove', onMouseMove);
-          document.removeEventListener('mouseup', onMouseUp);
-          document.removeEventListener('touchmove', onTouchMove);
-          document.removeEventListener('touchend', onTouchEnd);
-
-          this.saveWindowState(win.dataset.type, {
-            left: win.style.left,
-            top: win.style.top,
-            width: win.style.width,
-            height: win.style.height
+const stopDrag = () => {
+document.removeEventListener('mousemove', onMouseMove);
+document.removeEventListener('mouseup', onMouseUp);
+document.removeEventListener('touchmove', onTouchMove);
+document.removeEventListener('touchend', onTouchEnd);
+this.saveWindowState(win.dataset.type, {
+left: win.style.left,
+top: win.style.top,
+width: win.style.width,
+height: win.style.height
           });
         };
-
-        const onMouseMove = e => moveDrag(e.clientX, e.clientY);
-        const onMouseUp = stopDrag;
-        const onTouchMove = e => {
-          const t = e.touches[0];
-          moveDrag(t.clientX, t.clientY);
+const onMouseMove = e => moveDrag(e.clientX, e.clientY);
+const onMouseUp = stopDrag;
+const onTouchMove = e => {
+const t = e.touches[0];
+moveDrag(t.clientX, t.clientY);
         };
-        const onTouchEnd = stopDrag;
-
-        const onMouseDown = e => {
-          if (e.target.classList.contains('control-btn')) return;
-          startDrag(e.clientX, e.clientY);
-          document.addEventListener('mousemove', onMouseMove);
-          document.addEventListener('mouseup', onMouseUp);
+const onTouchEnd = stopDrag;
+const onMouseDown = e => {
+if (e.target.classList.contains('control-btn')) return;
+startDrag(e.clientX, e.clientY);
+document.addEventListener('mousemove', onMouseMove);
+document.addEventListener('mouseup', onMouseUp);
         };
-
-        const onTouchStart = e => {
-          if (e.target.classList.contains('control-btn')) return;
-          const t = e.touches[0];
-          startDrag(t.clientX, t.clientY);
-          document.addEventListener('touchmove', onTouchMove);
-          document.addEventListener('touchend', onTouchEnd);
+const onTouchStart = e => {
+if (e.target.classList.contains('control-btn')) return;
+const t = e.touches[0];
+startDrag(t.clientX, t.clientY);
+document.addEventListener('touchmove', onTouchMove);
+document.addEventListener('touchend', onTouchEnd);
         };
-
-        handle.addEventListener('mousedown', onMouseDown);
-        handle.addEventListener('touchstart', onTouchStart, { passive: false });
+handle.addEventListener('mousedown', onMouseDown);
+handle.addEventListener('touchstart', onTouchStart, { passive: false });
       }
-
-      makeResizable(win) {
-        win.querySelectorAll('.resize-handle').forEach(handle => {
-          const direction = handle.className.split(' ')[1].replace('resize-', '');
-
-          const startResize = (clientX, clientY) => ({
-            startX: clientX,
-            startY: clientY,
-            startWidth: win.offsetWidth,
-            startHeight: win.offsetHeight,
-            startLeft: win.offsetLeft,
-            startTop: win.offsetTop
+makeResizable(win) {
+win.querySelectorAll('.resize-handle').forEach(handle => {
+const direction = handle.className.split(' ')[1].replace('resize-', '');
+const startResize = (clientX, clientY) => ({
+startX: clientX,
+startY: clientY,
+startWidth: win.offsetWidth,
+startHeight: win.offsetHeight,
+startLeft: win.offsetLeft,
+startTop: win.offsetTop
           });
-
-          const resize = (clientX, clientY, s) => {
-            const dx = clientX - s.startX;
-            const dy = clientY - s.startY;
-
-            if (direction.includes('e')) win.style.width = `${Math.max(300, s.startWidth + dx)}px`;
-            if (direction.includes('w')) {
-              const newWidth = Math.max(300, s.startWidth - dx);
-              win.style.width = `${newWidth}px`;
-              win.style.left = `${s.startLeft + (s.startWidth - newWidth)}px`;
+const resize = (clientX, clientY, s) => {
+const dx = clientX - s.startX;
+const dy = clientY - s.startY;
+if (direction.includes('e')) win.style.width = `${Math.max(300, s.startWidth + dx)}px`;
+if (direction.includes('w')) {
+const newWidth = Math.max(300, s.startWidth - dx);
+win.style.width = `${newWidth}px`;
+win.style.left = `${s.startLeft + (s.startWidth - newWidth)}px`;
             }
-            if (direction.includes('s')) win.style.height = `${Math.max(200, s.startHeight + dy)}px`;
-            if (direction.includes('n')) {
-              const newHeight = Math.max(200, s.startHeight - dy);
-              win.style.height = `${newHeight}px`;
-              win.style.top = `${s.startTop + (s.startHeight - newHeight)}px`;
+if (direction.includes('s')) win.style.height = `${Math.max(200, s.startHeight + dy)}px`;
+if (direction.includes('n')) {
+const newHeight = Math.max(200, s.startHeight - dy);
+win.style.height = `${newHeight}px`;
+win.style.top = `${s.startTop + (s.startHeight - newHeight)}px`;
             }
           };
-
-          const stopResize = () => {
-            document.removeEventListener('mousemove', onMouseMove);
-            document.removeEventListener('mouseup', onMouseUp);
-            document.removeEventListener('touchmove', onTouchMove);
-            document.removeEventListener('touchend', onTouchEnd);
-
-            this.saveWindowState(win.dataset.type, {
-              left: win.style.left,
-              top: win.style.top,
-              width: win.style.width,
-              height: win.style.height
+const stopResize = () => {
+document.removeEventListener('mousemove', onMouseMove);
+document.removeEventListener('mouseup', onMouseUp);
+document.removeEventListener('touchmove', onTouchMove);
+document.removeEventListener('touchend', onTouchEnd);
+this.saveWindowState(win.dataset.type, {
+left: win.style.left,
+top: win.style.top,
+width: win.style.width,
+height: win.style.height
             });
           };
-
-          const onMouseMove = e => resize(e.clientX, e.clientY, state);
-          const onMouseUp = stopResize;
-          const onTouchMove = e => {
-            const t = e.touches[0];
-            resize(t.clientX, t.clientY, state);
+const onMouseMove = e => resize(e.clientX, e.clientY, state);
+const onMouseUp = stopResize;
+const onTouchMove = e => {
+const t = e.touches[0];
+resize(t.clientX, t.clientY, state);
           };
-          const onTouchEnd = stopResize;
-
-          let state;
-
-          const onMouseDown = e => {
-            e.stopPropagation();
-            state = startResize(e.clientX, e.clientY);
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup', onMouseUp);
+const onTouchEnd = stopResize;
+let state;
+const onMouseDown = e => {
+e.stopPropagation();
+state = startResize(e.clientX, e.clientY);
+document.addEventListener('mousemove', onMouseMove);
+document.addEventListener('mouseup', onMouseUp);
           };
-
-          const onTouchStart = e => {
-            e.stopPropagation();
-            const t = e.touches[0];
-            state = startResize(t.clientX, t.clientY);
-            document.addEventListener('touchmove', onTouchMove);
-            document.addEventListener('touchend', onTouchEnd);
+const onTouchStart = e => {
+e.stopPropagation();
+const t = e.touches[0];
+state = startResize(t.clientX, t.clientY);
+document.addEventListener('touchmove', onTouchMove);
+document.addEventListener('touchend', onTouchEnd);
           };
-
-          handle.addEventListener('mousedown', onMouseDown);
-          handle.addEventListener('touchstart', onTouchStart, { passive: false });
+handle.addEventListener('mousedown', onMouseDown);
+handle.addEventListener('touchstart', onTouchStart, { passive: false });
         });
       }
-
-      updateCheckbox(type, checked) {
-        const item = document.querySelector(`[data-window="${type}"]`);
-        const checkbox = item.querySelector('.checkbox');
-        checkbox.classList.toggle('checked', checked);
+updateCheckbox(type, checked) {
+const item = document.querySelector(`[data-window="${type}"]`);
+const checkbox = item.querySelector('.checkbox');
+checkbox.classList.toggle('checked', checked);
       }
-
-      updateTime() {
-        const now = new Date();
-        const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+updateTime() {
+const now = new Date();
+const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
           .map(n => String(n).padStart(2, '0'))
           .join(':');
-        document.getElementById('time').textContent = `${time} [VIE]`;
+document.getElementById('time').textContent = `${time} [VIE]`;
       }
-
-      saveWindowState(type, state) {
-        const saved = JSON.parse(localStorage.getItem('windowStates') || '{}');
-        saved[type] = state;
-        localStorage.setItem('windowStates', JSON.stringify(saved));
+saveWindowState(type, state) {
+try {
+  const saved = JSON.parse(localStorage.getItem('windowStates') || '{}');
+  saved[type] = state;
+  localStorage.setItem('windowStates', JSON.stringify(saved));
+} catch (e) {
+  console.log('LocalStorage not available');
+}
       }
-
-      getWindowState(type) {
-        const saved = JSON.parse(localStorage.getItem('windowStates') || '{}');
-        return saved[type];
+getWindowState(type) {
+try {
+  const saved = JSON.parse(localStorage.getItem('windowStates') || '{}');
+  return saved[type];
+} catch (e) {
+  return null;
+}
       }
     }
-
-    new WindowManager();
-  </script>
-
-  <!-- ✅ Use older Three.js temporarily or switch to module imports --><script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
-  <script src="shader.js"></script>
+new WindowManager();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
+<script src="shader.js"></script>
 </body>
 </html>
