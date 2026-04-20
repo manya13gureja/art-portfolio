@@ -93,6 +93,11 @@
             transform: translateY(-2px);
         }
 
+        .experiment-card:focus-visible {
+            outline: 1px solid rgba(0, 255, 0, 0.45);
+            outline-offset: 2px;
+        }
+
         .card-media {
             width: 100%;
             aspect-ratio: 16/9;
@@ -109,6 +114,7 @@
             justify-content: center;
         }
 
+        .media-placeholder img,
         .media-placeholder video {
             width: 100%;
             height: 100%;
@@ -216,12 +222,14 @@
             padding: 40px;
         }
 
-        .dialog-video-container {
+        .dialog-media-container {
             max-width: 1200px;
             margin: 0 auto 40px;
         }
 
-        .dialog-video-container video {
+        .dialog-media-container img,
+        .dialog-media-container video {
+            display: block;
             width: 100%;
             border-radius: 8px;
             box-shadow: 0 8px 32px rgba(0, 255, 0, 0.1);
@@ -317,101 +325,17 @@
     </header>
 
     <div class="lab-container">
-        <div class="experiments-grid">
-            <div class="experiment-card" data-experiment="experiment8">
-                <div class="card-media">
-                    <div class="media-placeholder">
-                        <video muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764969101/aurovideo_fxnrov.jpg" data-src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764969101/aurovideo_fxnrov.mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Visual for LokomotionXMixedfeelings at Auro</div>
-                    <div class="card-date">September 2025</div>
-                </div>
-            </div>
-
-            <div class="experiment-card" data-experiment="experiment7">
-                <div class="card-media">
-                    <div class="media-placeholder">
-                        <video muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.jpg" data-src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Visual for Focus Group Radio</div>
-                    <div class="card-date">September 2025</div>
-                </div>
-            </div>
-
-            <div class="experiment-card" data-experiment="experiment1">
-                <div class="card-media">
-                    <div class="media-placeholder">
-                        <video muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970193/video1_wfpl1b.jpg" data-src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970193/video1_wfpl1b.mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div class="card-title">UFQFT Exploration</div>
-                    <div class="card-date">July 2025</div>
-                </div>
-            </div>
-
-            <div class="experiment-card" data-experiment="experiment2">
-                <div class="card-media">
-                    <div class="media-placeholder">
-                        <video muted loop playsinline preload="auto" data-src="https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970222/video2_u8lquv.mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Generative Art</div>
-                    <div class="card-date">February 2025</div>
-                </div>
-            </div>
-
-            <div class="experiment-card" data-experiment="experiment3">
-                <div class="card-media">
-                    <div class="media-placeholder">
-                        <video muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970262/video3_nzb3xp.jpg" data-src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970262/video3_nzb3xp.mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Moving Poster</div>
-                    <div class="card-date">August 2025</div>
-                </div>
-            </div>
-
-      
-
-            <div class="experiment-card" data-experiment="experiment6">
-                <div class="card-media">
-                    <div class="media-placeholder">
-                        <video muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970326/experiments_uzc2hf.jpg" data-src="https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970326/experiments_uzc2hf.mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Generative Art - Experiments</div>
-                    <div class="card-date">September 2025</div>
-                </div>
-            </div>
-        </div>
+        <div class="experiments-grid" id="experimentsGrid"></div>
     </div>
 
     <div class="dialog-overlay" id="dialogOverlay">
         <div class="dialog-content">
             <div class="dialog-header">
                 <div class="dialog-title" id="dialogTitle">Experiment Title</div>
-                <button class="close-btn" onclick="closeDialog()">×</button>
+                <button class="close-btn" id="closeDialogButton">×</button>
             </div>
             <div class="dialog-body">
-                <div class="dialog-video-container">
-                    <video id="dialogVideo" controls preload="auto">
-                        <source src="" type="video/mp4">
-                    </video>
-                </div>
+                <div class="dialog-media-container" id="dialogMediaContainer"></div>
                 <div class="dialog-info">
                     <h2>About This Experiment</h2>
                     <p id="dialogDescription"></p>
@@ -439,193 +363,509 @@
     </div>
 
     <script>
-        function updateTime() {
-            const now = new Date();
-            const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
-                .map(n => String(n).padStart(2, '0'))
-                .join(':');
-            document.getElementById('time').textContent = `${time} [VIE]`;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        const experiments = {
-            experiment8: {
+        const LAB_PROJECTS = [
+            {
+                id: 'experiment8',
                 title: 'Visual for LokomotionXMixedfeelings at Auro',
                 date: 'September 2025',
                 category: 'Creative Coding',
-                tools: 'Touchdesigner',
-                video: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764969101/aurovideo_fxnrov.mp4',
-                description: 'A motion-driven promotional visual for LokomotionXMixedfeelings at Auro, designed to be played across social platforms before their live set. Used TouchDesigner, turned the Auro Bar into pointcloud and created the visuals on top(heatmap dancers) from scratch ',
-                link: 'https://www.instagram.com/p/DPQtCPpgiwc/', 
+                tools: 'TouchDesigner',
+                description: 'A motion-driven promotional visual for LokomotionXMixedfeelings at Auro, designed for social releases before the live set. The venue was rebuilt as a point cloud in TouchDesigner and layered with heat-map dancer forms to turn the club space into a responsive visual system.',
+                link: 'https://www.instagram.com/p/DPQtCPpgiwc/',
+                linkLabel: 'See on Instagram',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764969101/aurovideo_fxnrov.mp4',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764969101/aurovideo_fxnrov.jpg'
+                }
             },
-            experiment7: {
+            {
+                id: 'experiment7',
                 title: 'Visual for Focus Group Radio',
                 date: 'September 2025',
                 category: 'Creative Coding',
-                tools: 'Touchdesigner',
-                video: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.mp4',
-                description: ' A motion-driven promotional visual for Focus Group Radio, designed to be played across social platforms before their live set. Inspired by the song Unkle G by Unkle G',
-                link: 'https://www.instagram.com/reel/DOx4ie9iGDn/', 
+                tools: 'TouchDesigner',
+                description: 'A motion-driven promotional visual for Focus Group Radio, built as a social teaser before the live set. The piece leans into the energy of "Unkle G" and translates that mood into a tighter rhythmic visual language.',
+                link: 'https://www.instagram.com/reel/DOx4ie9iGDn/',
+                linkLabel: 'See on Instagram',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.mp4',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764968663/video-output-7218AEE6-0C01-4192-8E83-1AF36BF3AC99-2_v0bxjt.jpg'
+                }
             },
-            experiment1: {
-                title: 'Motion Design',
+            {
+                id: 'experiment1',
+                title: 'UFQFT Exploration',
                 date: 'July 2025',
                 category: 'Motion Graphics',
-                tools: 'Touchdesigner,p5.js',
-                video: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970193/video1_wfpl1b.mp4',
-                description: `You must've heard of the Unified Fractal Quantum Field Theory, if you haven't(what are you doing at my site) you'll learn it over here through the visuals I made demonstrating the structural unity between natural growth patterns and computational generative systems.
-                To show that the universe is structured by simple repeating rules, and that these rules can be visually reconstructed using computational design. It's a mix of: 
-	            •	physics curiosity
-	•	design craft
-	•	geometry exploration
-	•	real-world pattern recognition
-	•	generative media practice
-`
+                tools: 'TouchDesigner, p5.js',
+                description: 'A motion study built around the visual logic of Unified Fractal Quantum Field Theory. The piece reconstructs repeating growth rules through computational patterns and sits somewhere between physics curiosity, geometry exploration, design craft, and generative media practice.',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970193/video1_wfpl1b.mp4',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970193/video1_wfpl1b.jpg'
+                }
             },
-            experiment2: {
-                title: 'Generative Art',
+            {
+                id: 'experiment2',
+                title: 'Favorite types',
                 date: 'February 2025',
                 category: 'Creative Coding',
-                tools: 'TouchDesigner, PS',
-                video:'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970222/video2_u8lquv.mp4',
-                description: 'A typography experiment that shows all of my favorite fonts inspired by the blue screen DVD logos. Each font name drifts through the space, and as the viewer moves their mouse, the text dissolves into a reactive visual effect almost like liquid light or digital smoke'
+                tools: 'TouchDesigner, Photoshop',
+                description: 'A typography experiment built around favorite fonts and old DVD screen-saver logic. The letterforms drift through the frame, then break down into a reactive haze that behaves like liquid light or digital smoke.',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970222/video2_u8lquv.mp4',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970222/video2_u8lquv.jpg'
+                }
             },
-            experiment3: {
+            {
+                id: 'experiment3',
                 title: 'Moving Poster',
                 date: 'August 2025',
                 category: 'Typography',
-                tools: 'PS',
-                video: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970262/video3_nzb3xp.mp4',
-                description: 'A cover I made for my favourite book, meeting the universe halfway. The book argues that the universe isnt something we observe from a distance, we participate in its unfolding, that idea became the core of the visual direction. '
+                tools: 'Photoshop',
+                description: 'A moving cover for "Meeting the Universe Halfway." The visual direction follows the book\'s core argument: the universe is not something observed from a distance, but something we participate in as it unfolds.',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970262/video3_nzb3xp.mp4',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970262/video3_nzb3xp.jpg'
+                }
             },
-            experiment4: {
-                title: 'Motion Design',
-                date: 'January 2025',
+           
+              {
+                id: 'Apsarah audio visualiser',
+                title: 'Apsarah audio visualiser',
+                date: 'November 2026',
                 category: 'Motion Graphics',
-                tools: 'Jitter',
-                video: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970280/video4_oxh0l0.mp4',
-                description: 'Just exploration of a new tool'
+                tools: 'Touchdesigner',
+                description: 'An audio visualiser for Apsarah, a visualisation of one of the projects by Studio Rain Town. The piece was built with Touchdesigner.',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776632242/APSARAHVISUALS-2_lmyyuo.mov',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776632242/APSARAHVISUALS-2_lmyyuo.mov'
+                }
             },
-            experiment6: {
+            {
+                id: 'experiment6',
                 title: 'Generative Art - Experiments',
                 date: 'September 2025',
                 category: 'Creative Coding',
-                tools: 'p5.js, GLSL',
-                video: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1764970326/experiments_uzc2hf.mov',
-                description: 'This project is a running archive of my generative art experiments built across TouchDesigner and p5.js. Its not a single output, its a continuous investigation into how code, motion, and interaction can shape visual systems in real time. I explored everything from hand-tracking and motion-tracking to physics-driven patterns and responsive geometries. Each experiment tests a different idea: how visuals behave when pushed by data, how movement can sculpt form, how algorithms can mimic natural systems, or how interaction can turn a passive screen into a living environment.',
-            }
-        };
+                tools: 'p5.js, GLSL, TouchDesigner',
+                description: 'A running archive of generative experiments across TouchDesigner and p5.js. It is less a single outcome than an ongoing investigation into motion tracking, physics-driven patterns, responsive geometries, and the ways code can shape visual systems in real time.',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970326/experiments_uzc2hf.mp4',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970326/experiments_uzc2hf.jpg'
+                }
+            },
+            {
+                id: 'borrow-time',
+                title: 'Borrowed Time',
+                date: '2025',
+                category: 'Motion Graphics',
+                tools: 'Affter Effects',
+                description: 'Playing around with the concept of borrowed time.',
+                link: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776628922/BORROWEDTIME1.0_mgsdtw.mov',
+                linkLabel: 'Watch video',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776628922/BORROWEDTIME1.0_mgsdtw.mov',
+                    alt: 'Borrowed Time project still'
+                }
+            },
+                {
+                id: 'lego',
+                title: 'World is Lego',
+                date: '2025',
+                category: 'Interactive Experience',
+                tools: 'Touchdesigner, visual direction',
+                description: 'An interactive motion project that transforms real-world visuals into LEGO-style representations in real time. Using image processing techniques and spatial mapping, the system analyzes shapes, colors, and depth to recreate scenes as modular LEGO structures, exploring the intersection of perception, abstraction, and digital art. ',
+                link: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776631531/lego.0_okhaxt.mov',
+                linkLabel: 'Watch video',
+                media: {
+                    type: 'image',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776631531/lego.0_okhaxt.mov',
+                    alt: 'The Lost Internet project still'
+                }
+            },
+           {
+                id: 'experiment4',
+                title: 'Jitter Motion Study',
+                date: 'January 2025',
+                category: 'Motion Graphics',
+                tools: 'Jitter',
+                description: 'A smaller motion exploration made while learning a new toolchain in Jitter. The focus was speed, iteration, and testing how far a minimal setup could be pushed into something graphic.',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/q_auto,f_auto/v1764970280/video4_oxh0l0.mp4',
+                    poster: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/so_0/v1764970280/video4_oxh0l0.jpg'
+                }
+            },
+            {
+                id: 'Moving Poster',
+                title: 'Moving Poster',
+                date: 'August 2025',
+                category: 'Experience Design',
+                tools: 'Interaction design, storytelling, product thinking',
+                description: 'A moving poster about Fatasizing',
+                link: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776627348/motionposter.0_ol93q0.mov',
+                linkLabel: 'Watch video',
+                media: {
+                    type: 'video',
+                    src: 'https://res.cloudinary.com/dyu1ojyqy/video/upload/v1776627348/motionposter.0_ol93q0.mov',
+                    alt: 'Moving Poster project still'
+                }
+            },
+        
+        ];
 
-        // Optimized video loading strategy
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const video = entry.target;
-                    const src = video.getAttribute('data-src');
-                    if (src && !video.src) {
-                        video.src = src;
-                        // Only load metadata, not the full video
-                        video.load();
+        class LabPage {
+            constructor() {
+                this.projects = LAB_PROJECTS;
+                this.projectMap = new Map(this.projects.map(project => [project.id, project]));
+                this.grid = document.getElementById('experimentsGrid');
+                this.overlay = document.getElementById('dialogOverlay');
+                this.dialogTitle = document.getElementById('dialogTitle');
+                this.dialogDescription = document.getElementById('dialogDescription');
+                this.dialogDate = document.getElementById('dialogDate');
+                this.dialogCategory = document.getElementById('dialogCategory');
+                this.dialogTools = document.getElementById('dialogTools');
+                this.dialogLink = document.getElementById('dialogLink');
+                this.dialogMediaContainer = document.getElementById('dialogMediaContainer');
+                this.closeDialogButton = document.getElementById('closeDialogButton');
+                this.timeElement = document.getElementById('time');
+                this.videoObserver = null;
+                this.pendingPreviewHandlers = new WeakMap();
+                this.canHoverPreview = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+                this.timeInterval = null;
+            }
+
+            init() {
+                this.renderProjects();
+                this.bindEvents();
+                this.setupVideoObserver();
+                this.startClock();
+            }
+
+            renderProjects() {
+                this.grid.textContent = '';
+                const fragment = document.createDocumentFragment();
+
+                this.projects.forEach(project => {
+                    const card = document.createElement('article');
+                    card.className = 'experiment-card';
+                    card.dataset.experiment = project.id;
+                    card.tabIndex = 0;
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('aria-label', `Open ${project.title}`);
+
+                    const media = document.createElement('div');
+                    media.className = 'card-media';
+
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'media-placeholder';
+
+                    if (project.media.type === 'video') {
+                        const video = document.createElement('video');
+                        video.muted = true;
+                        video.loop = true;
+                        video.playsInline = true;
+                        video.preload = 'none';
+                        video.dataset.src = project.media.src;
+                        if (project.media.poster) {
+                            video.poster = project.media.poster;
+                        }
+                        placeholder.appendChild(video);
+                    } else {
+                        const image = document.createElement('img');
+                        image.src = project.media.src;
+                        image.alt = project.media.alt || project.title;
+                        image.loading = 'lazy';
+                        image.decoding = 'async';
+                        placeholder.appendChild(image);
+                    }
+
+                    media.appendChild(placeholder);
+
+                    const info = document.createElement('div');
+                    info.className = 'card-info';
+
+                    const title = document.createElement('div');
+                    title.className = 'card-title';
+                    title.textContent = project.title;
+
+                    const date = document.createElement('div');
+                    date.className = 'card-date';
+                    date.textContent = project.date;
+
+                    info.append(title, date);
+                    card.append(media, info);
+                    fragment.appendChild(card);
+                });
+
+                this.grid.appendChild(fragment);
+            }
+
+            bindEvents() {
+                const cards = this.grid.querySelectorAll('.experiment-card');
+
+                cards.forEach(card => {
+                    card.addEventListener('click', () => this.openDialog(card.dataset.experiment));
+                    card.addEventListener('keydown', event => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            this.openDialog(card.dataset.experiment);
+                        }
+                    });
+
+                    if (!this.canHoverPreview) {
+                        return;
+                    }
+
+                    const video = card.querySelector('video');
+                    if (!video) {
+                        return;
+                    }
+
+                    card.addEventListener('mouseenter', () => this.startPreview(video));
+                    card.addEventListener('mouseleave', () => this.stopPreview(video, true));
+                });
+
+                this.closeDialogButton.addEventListener('click', () => this.closeDialog());
+
+                this.overlay.addEventListener('click', event => {
+                    if (event.target === this.overlay) {
+                        this.closeDialog();
+                    }
+                });
+
+                document.addEventListener('keydown', event => {
+                    if (event.key === 'Escape') {
+                        this.closeDialog();
+                    }
+                });
+
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        this.pauseAllPreviews(false);
+                        this.pauseDialogMedia();
+                    }
+                });
+
+                window.addEventListener('pagehide', () => {
+                    this.pauseAllPreviews(false);
+                    this.pauseDialogMedia();
+                });
+            }
+
+            setupVideoObserver() {
+                if (!('IntersectionObserver' in window)) {
+                    return;
+                }
+
+                this.videoObserver = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        const video = entry.target;
+
+                        if (entry.isIntersecting) {
+                            this.loadPreviewVideo(video);
+                            return;
+                        }
+
+                        this.stopPreview(video, false);
+                    });
+                }, {
+                    rootMargin: '200px 0px'
+                });
+
+                this.grid.querySelectorAll('video[data-src]').forEach(video => {
+                    this.videoObserver.observe(video);
+                });
+            }
+
+            loadPreviewVideo(video) {
+                if (!video || video.dataset.loaded === 'true') {
+                    return;
+                }
+
+                video.src = video.dataset.src;
+                video.preload = 'metadata';
+                video.load();
+                video.dataset.loaded = 'true';
+
+                if (this.videoObserver) {
+                    this.videoObserver.unobserve(video);
+                }
+            }
+
+            startPreview(video) {
+                if (!video || document.hidden || this.overlay.classList.contains('active')) {
+                    return;
+                }
+
+                video.dataset.hovered = 'true';
+                this.loadPreviewVideo(video);
+
+                if (video.readyState >= 2) {
+                    this.safePlay(video);
+                    return;
+                }
+
+                const existingHandler = this.pendingPreviewHandlers.get(video);
+                if (existingHandler) {
+                    video.removeEventListener('canplay', existingHandler);
+                }
+
+                const handler = () => {
+                    this.pendingPreviewHandlers.delete(video);
+                    if (video.dataset.hovered === 'true' && !document.hidden && !this.overlay.classList.contains('active')) {
+                        this.safePlay(video);
+                    }
+                };
+
+                this.pendingPreviewHandlers.set(video, handler);
+                video.addEventListener('canplay', handler, { once: true });
+            }
+
+            stopPreview(video, resetTime) {
+                if (!video) {
+                    return;
+                }
+
+                video.dataset.hovered = 'false';
+
+                const pendingHandler = this.pendingPreviewHandlers.get(video);
+                if (pendingHandler) {
+                    video.removeEventListener('canplay', pendingHandler);
+                    this.pendingPreviewHandlers.delete(video);
+                }
+
+                video.pause();
+
+                if (resetTime && video.readyState > 0) {
+                    try {
+                        video.currentTime = 0;
+                    } catch (error) {
+                        // Ignore currentTime errors for partially loaded media.
                     }
                 }
-            });
-        }, {
-            rootMargin: '100px'
-        });
+            }
 
-        // Set up all cards with hover interactions
-        document.querySelectorAll('.experiment-card').forEach(card => {
-            const video = card.querySelector('video');
-            
-            if (video) {
-                // Observe video for lazy loading
-                videoObserver.observe(video);
-                
-                // Add hover listeners - load on hover if not loaded
-                card.addEventListener('mouseenter', function() {
-                    const src = video.getAttribute('data-src');
-                    
-                    // If video hasn't started loading, load it now
-                    if (src && !video.src) {
-                        video.src = src;
-                        video.load();
+            pauseAllPreviews(resetTime) {
+                this.grid.querySelectorAll('video').forEach(video => {
+                    this.stopPreview(video, resetTime);
+                });
+            }
+
+            openDialog(projectId) {
+                const project = this.projectMap.get(projectId);
+                if (!project) {
+                    return;
+                }
+
+                this.pauseAllPreviews(false);
+                this.dialogTitle.textContent = project.title;
+                this.dialogDate.textContent = project.date;
+                this.dialogCategory.textContent = project.category;
+                this.dialogTools.textContent = project.tools;
+                this.dialogDescription.textContent = project.description;
+                this.renderDialogLink(project);
+                this.renderDialogMedia(project);
+
+                this.overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            renderDialogLink(project) {
+                this.dialogLink.textContent = '';
+
+                if (!project.link) {
+                    this.dialogLink.textContent = '—';
+                    return;
+                }
+
+                const anchor = document.createElement('a');
+                anchor.href = project.link;
+                anchor.target = '_blank';
+                anchor.rel = 'noopener noreferrer';
+                anchor.style.color = '#00ff00';
+                anchor.style.textDecoration = 'underline';
+                anchor.textContent = project.linkLabel || 'Open link';
+                this.dialogLink.appendChild(anchor);
+            }
+
+            renderDialogMedia(project) {
+                this.pauseDialogMedia();
+                this.dialogMediaContainer.textContent = '';
+
+                if (project.media.type === 'video') {
+                    const video = document.createElement('video');
+                    video.controls = true;
+                    video.preload = 'metadata';
+                    video.playsInline = true;
+                    if (project.media.poster) {
+                        video.poster = project.media.poster;
                     }
-                    
-                    // Try to play once loaded
-                    const tryPlay = () => {
-                        if (video.readyState >= 3) {
-                            video.play().catch(e => console.log('Play prevented:', e));
-                        } else {
-                            video.addEventListener('canplay', () => {
-                                video.play().catch(e => console.log('Play prevented:', e));
-                            }, { once: true });
-                        }
-                    };
-                    tryPlay();
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    video.pause();
-                    video.currentTime = 0;
-                });
+                    video.src = project.media.src;
+                    this.dialogMediaContainer.appendChild(video);
+                    return;
+                }
+
+                const image = document.createElement('img');
+                image.src = project.media.src;
+                image.alt = project.media.alt || project.title;
+                image.loading = 'eager';
+                image.decoding = 'async';
+                this.dialogMediaContainer.appendChild(image);
             }
-            
-            // Add click listener
-            card.addEventListener('click', function() {
-                const experimentId = this.getAttribute('data-experiment');
-                openDialog(experimentId);
-            });
-        });
 
-        function openDialog(experimentId) {
-            const experiment = experiments[experimentId];
-            if (!experiment) return;
+            pauseDialogMedia() {
+                const dialogVideo = this.dialogMediaContainer.querySelector('video');
+                if (!dialogVideo) {
+                    return;
+                }
 
-            document.getElementById('dialogTitle').textContent = experiment.title;
-            document.getElementById('dialogDate').textContent = experiment.date;
-            document.getElementById('dialogCategory').textContent = experiment.category;
-            document.getElementById('dialogTools').textContent = experiment.tools;
-            document.getElementById('dialogDescription').textContent = experiment.description;
-            const dialogLink = document.getElementById('dialogLink');
-            dialogLink.innerHTML = experiment.link
-                ? `<a href="${experiment.link}" target="_blank" style="color:#00ff00; text-decoration:underline;">See on Instagram</a>`
-                : '—';
+                dialogVideo.pause();
+                dialogVideo.removeAttribute('src');
+                dialogVideo.load();
+            }
 
-            const videoElement = document.getElementById('dialogVideo');
-            const source = videoElement.querySelector('source');
-            source.src = experiment.video;
-            videoElement.load();
+            closeDialog() {
+                if (!this.overlay.classList.contains('active')) {
+                    return;
+                }
 
-            const overlay = document.getElementById('dialogOverlay');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+                this.overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                this.pauseDialogMedia();
+                this.dialogMediaContainer.textContent = '';
+            }
 
-            // Pause all preview videos when dialog opens
-            document.querySelectorAll('.experiment-card video').forEach(v => v.pause());
+            safePlay(video) {
+                const playPromise = video.play();
+                if (playPromise && typeof playPromise.catch === 'function') {
+                    playPromise.catch(() => {});
+                }
+            }
+
+            startClock() {
+                const updateTime = () => {
+                    const now = new Date();
+                    const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+                        .map(value => String(value).padStart(2, '0'))
+                        .join(':');
+
+                    this.timeElement.textContent = `${time} [VIE]`;
+                };
+
+                updateTime();
+                this.timeInterval = window.setInterval(updateTime, 1000);
+            }
         }
 
-        function closeDialog() {
-            const overlay = document.getElementById('dialogOverlay');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-            
-            const videoElement = document.getElementById('dialogVideo');
-            videoElement.pause();
-            videoElement.currentTime = 0;
-        }
-
-        document.getElementById('dialogOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeDialog();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeDialog();
-            }
-        });
+        new LabPage().init();
     </script>
 </body>
 </html>
