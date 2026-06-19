@@ -199,13 +199,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-width: 0;
+            overflow: hidden;
+            padding: 32px;
         }
 
         .preview-card {
             position: absolute;
-            width: 500px;
-            height: 350px;
-            background: #fff;
+            width: min(760px, calc(100% - 64px));
+            max-height: calc(100% - 64px);
+            background: rgba(18, 18, 18, 0.96);
             border-radius: 12px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
             opacity: 0;
@@ -213,6 +216,9 @@
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
             overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .preview-card.active {
@@ -224,7 +230,41 @@
         .preview-image {
             width: 100%;
             height: 100%;
+            min-height: 320px;
             object-fit: cover;
+            display: block;
+        }
+
+        .preview-copy {
+            min-width: 0;
+            padding: clamp(18px, 3vw, 30px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .preview-title {
+            font-size: clamp(18px, 2vw, 26px);
+            line-height: 1.15;
+            overflow-wrap: anywhere;
+        }
+
+        .preview-description {
+            font-size: clamp(12px, 1.2vw, 14px);
+            line-height: 1.6;
+            color: #cfcfcf;
+            overflow-wrap: anywhere;
+        }
+
+        .preview-meta {
+            font-size: 11px;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            overflow-wrap: anywhere;
         }
 
         .preview-placeholder {
@@ -245,8 +285,18 @@
             }
 
             .preview-card {
-                width: 400px;
-                height: 280px;
+                width: min(560px, calc(100% - 40px));
+                max-height: calc(100% - 40px);
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .preview-image {
+                min-height: 200px;
+                max-height: 42vh;
+            }
+
+            .preview-copy {
+                justify-content: flex-start;
             }
         }
 
@@ -264,12 +314,37 @@
 
             .preview-area {
                 height: 50vh;
+                padding: 18px;
             }
 
             .preview-card {
-                width: 90%;
+                width: min(90%, 350px);
                 max-width: 350px;
-                height: 250px;
+                max-height: calc(100% - 24px);
+                overflow-y: auto;
+            }
+
+            .preview-image {
+                min-height: 120px;
+                max-height: 22vh;
+            }
+
+            .preview-copy {
+                padding: 16px;
+                gap: 8px;
+            }
+
+            .preview-title {
+                font-size: 16px;
+            }
+
+            .preview-description {
+                font-size: 11px;
+                line-height: 1.45;
+            }
+
+            .preview-meta {
+                font-size: 10px;
             }
 
             .project-item {
@@ -320,10 +395,10 @@
     <div class="works-layout">
         <!-- Sidebar -->
         <aside class="works-sidebar">
-            <div class="project-count">[5]</div>
+            <div class="project-count">[6]</div>
             
             <div class="projects-list" id="projectsList">
-                <div class="project-item" data-project="Sourboo Web & Brand Design and Development">Sourboo Snacks Web Design and Development</div>
+                <div class="project-item" data-project="Sourboo Web & Brand Design and Development">Sourboo Snacks</div>
                 <div class="project-item" data-project="2626 studios">Say it with a pin</div>
                 <div class="project-item" data-project="UI">Eunoia UI</div>
                  <div class="project-item" data-project="personal">Art in Motion</div>
@@ -346,12 +421,12 @@
     </div>
 <script>
     const PROJECTS = {
-        UI: { name: 'Eunoia UI', image: 'assets/eunoiaui.webp', link: 'https://eunoiaui.vercel.app' },
-         personal: { name: 'Art in Motion', image: 'assets/crochet.webp' , link:'https://fortunate-politician-605.notion.site/Art-in-Motion-Real-Time-crochet-pattern-visualisation-189ff90b3b6b8090a8d1f840b23fcadb' },
-        creative : { name: 'Breathe with Us', image: 'assets/breathewus.webp', link: 'https://medium.com/@manyaagureja13/breathe-with-us-building-emotional-awareness-12c573257247' },
-        404: { name: 'The Lost Internet', image: 'assets/404.webp', link:'https://404-pages.framer.website' },
-        '2626 studios': { name: 'Say it with a pin', image: 'assets/sayitwapin.avif', link:'https://sayitwithapin.com' },
-        'Sourboo Web & Brand Design and Development': { name: 'Sourboo', image: 'assets/sourboo.png', link:'https://www.sourboo.com' },
+        UI: { name: 'Eunoia UI', image: 'assets/eunoiaui.webp', meta: 'Interface system', description: 'A component-driven UI library shaped around interaction patterns, reusable layouts, and polished product surfaces.', link: 'https://eunoiaui.vercel.app' },
+         personal: { name: 'Art in Motion', image: 'assets/crochet.webp', meta: 'Creative technology', description: 'A real-time crochet pattern visualisation project exploring how handmade craft can become an animated digital interface.', link:'https://fortunate-politician-605.notion.site/Art-in-Motion-Real-Time-crochet-pattern-visualisation-189ff90b3b6b8090a8d1f840b23fcadb' },
+        creative : { name: 'Breathe with Us', image: 'assets/breathewus.webp', meta: 'Experience design', description: 'An emotional-awareness project using rhythm, interaction, and reflection to help people notice and regulate how they feel.', link: 'https://medium.com/@manyaagureja13/breathe-with-us-building-emotional-awareness-12c573257247' },
+        404: { name: 'The Lost Internet', image: 'assets/404.webp', meta: 'Web experiment', description: 'A playful 404 experience UI Designs that treats getting lost online as an atmospheric, interactive moment instead of a dead end.', link:'https://404-pages.framer.website' },
+        '2626 studios': { name: 'Say it with a pin', image: 'assets/sayitwapin.avif', meta: 'Brand and web', description: 'Worked across UX research, and design with the 2626 creative studios team, collaborating with various designer and developers to bring their branchild to life.', link:'https://sayitwithapin.com' },
+        'Sourboo Web & Brand Design and Development': { name: 'Sourboo', image: 'assets/sourboo.png', meta: 'Visual Identity, Design and Development', description: 'Built an experimental e-commerce experience that blends branding, storytelling, and interaction design. Through motion, pacing, and playful digital interactions, I explored how web experiences can create desire and brand affinity beyond traditional e-commerce patterns.', link:'https://www.sourboo.com' },
     };
 
     class WorksPage {
@@ -374,11 +449,18 @@
                 card.className = 'preview-card';
                 card.dataset.project = key;
 
-                if (project.image) {
-                    card.innerHTML = `<img src="${project.image}" alt="${project.name}" class="preview-image">`;
-                } else {
-                    card.innerHTML = `<div class="preview-placeholder">${project.name}</div>`;
-                }
+                const imageMarkup = project.image
+                    ? `<img src="${project.image}" alt="${project.name}" class="preview-image">`
+                    : `<div class="preview-placeholder">${project.name}</div>`;
+
+                card.innerHTML = `
+                    ${imageMarkup}
+                    <div class="preview-copy">
+                        <div class="preview-meta">${project.meta}</div>
+                        <h2 class="preview-title">${project.name}</h2>
+                        <p class="preview-description">${project.description}</p>
+                    </div>
+                `;
 
                 this.previewArea.appendChild(card);
             });
